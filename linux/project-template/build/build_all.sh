@@ -53,7 +53,7 @@ config_release_version()
 
 make_package()
 {
-	local DEST_DIR="Dest"
+	local DEST_DIR="dest"
 	local TARGET_DIR="release-${TARGET_OS}-${TARGET_ARCH}-${RELEASE_VERSION}"
 	local TARGET_FILE="${TARGET_DIR}.tar.gz"
 
@@ -63,10 +63,10 @@ make_package()
 		return 1
 	fi
 	mkdir -p ${TARGET_DIR}
-	cp -rf ${DEST_DIR}/*	${TARGET_DIR}
+	mv -v ${DEST_DIR}/*	${TARGET_DIR}
 	tar czvf ${TARGET_FILE}	${TARGET_DIR}
 	mv -vf ${TARGET_FILE}	${DEST_DIR}
-	#rm -rf ${TARGET_DIR}
+	rm -rf ${TARGET_DIR}
 	cd -
 }
 

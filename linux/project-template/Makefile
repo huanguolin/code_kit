@@ -35,6 +35,5 @@ clean:
 			$(MAKE) -C 	$$d  clean; \
 		done
 #	Here can remove dest folder ...
-
-
+	@- rm -rf $(DEST)
 

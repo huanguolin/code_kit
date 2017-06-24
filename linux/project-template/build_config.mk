@@ -14,3 +14,6 @@ BUILD_TARGET_LIBS	:= $(LIB_FOO_DIR)
 # You must pay attention to the order
 BUILD_TARGET_APPS	:= $(APP_HELLO_DIR)
 
+####### Output path configure #######
+DEST				:=	$(INSTALL_OUTPUT_DIR) 
+

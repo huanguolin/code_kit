@@ -18,10 +18,8 @@ APP_HELLO_DIR		:= $(APP_DIR)/hello
 # This projects just belong to 'lib' path.
 SHARED_LIB_LIST     := libfoo
 
-####### Output path configure #######
-DEST	:= $(PROJECT_ROOT_DIR)/dest
 
 # Default output set 
-INSTALL_OUTPUT_DIR  := $(DEST)
+INSTALL_OUTPUT_DIR  := $(PROJECT_ROOT_DIR)/dest
 
 
