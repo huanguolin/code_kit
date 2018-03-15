@@ -1,5 +1,7 @@
 #include "print_progress.h"
 
+#include <stdio.h>
+
 void sleep_ms(int ms) {
 #ifdef WIN32
 
@@ -17,11 +19,11 @@ void sleep_ms(int ms) {
 int main(int argc, const char **argv) {
     char msg[256] = {0};
 
-    for (int i = 0; i < msg) {
+    for (int i = 0; i < 100; i++) {
         int p = i + 1;
         sprintf(msg, "progress %d%% now", p);
         print_progress(msg, p);
-        sleep_ms(1000);
+        sleep_ms(100);
     }
 
     return 0;

@@ -1,6 +1,7 @@
 #include "print_progress.h"
 
 #include <stdio.h>
+#include <string.h>
 
 int get_terminal_cols(void) {
 #ifdef WIN32
@@ -68,19 +69,19 @@ void print_progress(const char *msg, int percent) {
 	/* Print progress bar */
 	printf("%3d%% [", percent);
 	for (int i = 0; i < percent_need_len; i++) printf("=");
+	(percent >= 100) ? printf("=") :  printf(">");
 	for (int i = 0; i < progress_len - percent_need_len; i++) printf(" ");
-	if (percent >= 100) printf("=]");
-	else printf(">]");
+	printf("]");
 
 	/* Print message, if cols enough */
 	if (half > ONLY_PROGRESS_BAR_NEED) {
 		printf(" ");
 		if (msg_len < half) {
-			printf(msg);
+			printf("%s", msg);
 		} else {
             /* message too long, so make the middle part to ... */
 			int part = (half - 6) / 2; // minus 6 for: left space and mid ' ... '
-			for (int i = 0; i < part; i++) printf("%c", msg + i);
+			for (int i = 0; i < part; i++) printf("%c", (int)*(msg + i));
 			printf(" ... ");
 			printf("%s", msg + msg_len - part);
 		}
