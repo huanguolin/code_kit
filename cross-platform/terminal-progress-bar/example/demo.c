@@ -1,6 +1,8 @@
 #include "print_progress.h"
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 void sleep_ms(int ms) {
 #ifdef WIN32
@@ -18,12 +20,15 @@ void sleep_ms(int ms) {
 
 int main(int argc, const char **argv) {
     char msg[256] = {0};
-
+	
+	srand(time(NULL));
     for (int i = 0; i < 100; i++) {
         int p = i + 1;
-        sprintf(msg, "progress %d%% now", p);
+		int r = rand() % 10;
+        if (r > 50) sprintf(msg, "progress %d%% now", p);
+		else sprintf(msg, "this is very very long progress message, now is %d%%", p);
         print_progress(msg, p);
-        sleep_ms(100);
+        sleep_ms(r * 100);
     }
 
     return 0;

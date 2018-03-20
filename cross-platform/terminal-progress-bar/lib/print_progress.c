@@ -73,14 +73,20 @@ void print_progress(const char *msg, int percent) {
 	for (int i = 0; i < progress_len - percent_need_len; i++) printf(" ");
 	printf("]");
 
+
+
 	/* Print message, if cols enough */
 	if (half > ONLY_PROGRESS_BAR_NEED) {
+		// minus 2 for: one is msg left space, one to avoid the buf full 
+		int rest = cols - half - 2;
 		printf(" ");
 		if (msg_len < half) {
 			printf("%s", msg);
+			rest -= msg_len;
+			for (int i = 0; i < rest; i++) printf(" ");
 		} else {
             /* message too long, so make the middle part to ... */
-			int part = (half - 6) / 2; // minus 6 for: left space and mid ' ... '
+			int part = (rest - 6) / 2; // minus 6 for: left space and mid ' ... '
 			for (int i = 0; i < part; i++) printf("%c", (int)*(msg + i));
 			printf(" ... ");
 			printf("%s", msg + msg_len - part);
