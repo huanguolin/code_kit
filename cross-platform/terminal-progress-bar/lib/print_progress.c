@@ -80,7 +80,7 @@ void print_progress(const char *msg, int percent) {
 		// minus 2 for: one is msg left space, one to avoid the buf full 
 		int rest = cols - half - 2;
 		printf(" ");
-		if (msg_len < half) {
+		if (msg_len <= rest) {
 			printf("%s", msg);
 			rest -= msg_len;
 			for (int i = 0; i < rest; i++) printf(" ");
